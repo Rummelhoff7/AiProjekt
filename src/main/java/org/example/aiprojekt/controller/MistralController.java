@@ -2,7 +2,6 @@ package org.example.aiprojekt.controller;
 
 import org.example.aiprojekt.service.MistralService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.reactive.function.client.WebClient;
 
 
 @RestController
@@ -11,11 +10,9 @@ public class MistralController {
 
     private final MistralService mistralService;
 
-    private final WebClient webClient;
 
-    public MistralController(MistralService mistralService, WebClient.Builder webClientBuilder) {
+    public MistralController(MistralService mistralService) {
         this.mistralService = mistralService;
-        this.webClient = webClientBuilder.baseUrl("https://api.mistral.ai/v1/chat/completions").build();
     }
 
     @GetMapping()

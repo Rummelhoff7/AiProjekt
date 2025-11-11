@@ -16,6 +16,7 @@ public class LastFmMusicService {
     @Value("${lastfm.api.key}")
     private String apiKey;
 
+
     public LastFmMusicService(WebClient.Builder webClientBuilder,
                          @Value("${lastfm.base.url}") String baseUrl) {
         this.webClient = webClientBuilder.baseUrl(baseUrl).build();
@@ -48,4 +49,18 @@ public class LastFmMusicService {
                 .bodyToMono(Map.class)
                 .block();
     }
+
+    public Map<String, Object> getTopTracks(String artist) {
+        return webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .queryParam("method", "artist.gettoptracks")
+                        .queryParam("artist", artist)
+                        .queryParam("api_key", apiKey)
+                        .queryParam("format", "json")
+                        .build())
+                .retrieve()
+                .bodyToMono(Map.class)
+                .block();
+    }
+
 }

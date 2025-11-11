@@ -2,10 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Music Chat</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="container">
+    <h1>AI Music Chat</h1>
 
+    <div class="search-section">
+        <input type="text" id="artistInput" placeholder="Enter artist name">
+        <button id="searchBtn">Get Artist Info</button>
+    </div>
+
+    <div id="artistInfo" class="artist-info"></div>
+
+    <div class="quiz-section">
+        <h2></h2>
+        <div id="quizContainer" class="quiz-container"></div>
+        <button id="submitQuizBtn" style="display:none;">Submit Answers</button>
+        <div id="quizResult" class="quiz-result"></div>
+    </div>
+
+
+    <div class="chat-container">
+        <div id="chatOutput" class="chat-output"></div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Ask anything music related...">
+            <button id="sendBtn">Send</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
 </body>
 </html>

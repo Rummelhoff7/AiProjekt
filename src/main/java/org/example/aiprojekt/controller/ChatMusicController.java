@@ -41,4 +41,24 @@ public class ChatMusicController {
 
         return mistralService.askMistral(prompt);
     }
+
+    @GetMapping("/compare")
+    public String compareArtists(@RequestParam String artist1, @RequestParam String artist2) {
+        Map<String, Object> info1 = lastFmService.getArtistInfo(artist1);
+        Map<String, Object> info2 = lastFmService.getArtistInfo(artist2);
+
+        String bio1 = ((Map<String, Object>) ((Map<String, Object>) info1.get("artist")).get("bio")).get("summary").toString();
+        String bio2 = ((Map<String, Object>) ((Map<String, Object>) info2.get("artist")).get("bio")).get("summary").toString();
+
+        String prompt = String.format("""
+        Compare these two artists and their musical styles.
+        Artist 1: %s → %s
+        Artist 2: %s → %s
+        Write a short comparison for a music fan.
+        """, artist1, bio1, artist2, bio2);
+
+        return mistralService.askMistral(prompt);
+    }
+
+
 }
